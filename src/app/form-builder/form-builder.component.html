@@ -1,3 +1,12 @@
 <div class="container-fluid my-2">
-  <form-builder [form]="form" [options]="options"></form-builder>
+  <form-builder
+    [form]="form"
+    [options]="options"
+    (change)="onChange($event)"
+  ></form-builder>
+  <div class="my-2 d-flex justify-content-center">
+    <button type="button" class="btn btn-outline-primary" (click)="saveForm()">
+      Save Form
+    </button>
+  </div>
 </div>

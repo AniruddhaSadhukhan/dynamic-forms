@@ -1,17 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { options } from './options';
 
 @Component({
-  selector: 'app-form-builder',
+  selector: 'form-builder',
   templateUrl: './form-builder.component.html',
-  styleUrls: ['./form-builder.component.scss']
+  styleUrls: ['./form-builder.component.scss'],
 })
-export class FormBuilderComponent {
+export class FormBuilderComponent implements OnInit {
+  @Input() initialForm: any;
+  @Output() save: EventEmitter<any> = new EventEmitter();
+  options: any;
 
   form: Object = { components: [] };
-  options:any
 
-  constructor(){
-    this.options = options
+  generatedForm: Object;
+
+  constructor() {
+    this.options = options;
+  }
+
+  ngOnInit(): void {
+    if (this.initialForm?.components?.length) {
+      this.form = this.initialForm;
+    }
+    this.generatedForm = this.initialForm;
+  }
+
+  onChange(event) {
+    this.generatedForm = event.form;
+    console.log(this.generatedForm);
+  }
+
+  saveForm() {
+    this.save.emit(this.generatedForm);
   }
 }

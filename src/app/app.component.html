@@ -1,1 +1,117 @@
-<app-form-builder></app-form-builder>
+<nav class="navbar navbar-expand-md bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1" href="#">Dynamic Form Demo</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngFor="let item of pages">
+          <a
+            class="nav-link"
+            role="button"
+            (click)="changePage(item)"
+            ngClass="{{ currentPage === item ? 'active' : '' }}"
+            >{{ item }}</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://github.com/AniruddhaSadhukhan/dynamic-forms"
+            target="_blank"
+            >GitHub</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ng-container *ngIf="currentPage === 'Form Builder'">
+  <div class="my-2 d-flex justify-content-center">
+    <small
+      class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2"
+      >Create a form here and save the form</small
+    >
+  </div>
+  <form-builder
+    [initialForm]="initialForm"
+    (save)="onFormSave($event)"
+  ></form-builder>
+
+  <div class="my-2 d-flex justify-content-center">
+    <small
+      class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2"
+      >The output of the above Form Builder on save is a JSON Schema that
+      represents the dynamic form.</small
+    >
+  </div>
+
+  <div class="my-2 d-flex flex-column justify-content-center">
+    <h4 class="text-center text-muted">As JSON Schema</h4>
+    <div class="well jsonviewer row justify-content-center">
+      <pre
+        class="col-md-10 col-lg-6 bg-dark-subtle border border-info rounded-4"
+        id="json"
+      ><code class="language-json" #json>
+        {{form | json }}
+      </code></pre>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="currentPage === 'Form Renderer'">
+  <div class="my-2 d-flex justify-content-center">
+    <small
+      class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2"
+      >You can fill up the form created in the Form Builder. Make sure to add a
+      Submit Button in the form to submit the result.</small
+    >
+  </div>
+  <form-renderer [form]="form" (submit)="onSubmission($event)"></form-renderer>
+
+  <div class="my-2 d-flex justify-content-center">
+    <small
+      class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2"
+      >The output of the above Form on submit is a JSON Schema that represents
+      the answers given.</small
+    >
+  </div>
+
+  <div class="my-2 d-flex flex-column justify-content-center">
+    <h4 class="text-center text-muted">Submission JSON</h4>
+    <div class="well jsonviewer row justify-content-center">
+      <pre
+        class="col-md-10 col-lg-6 bg-dark-subtle border border-info rounded-4"
+        id="json"
+      ><code class="language-json" #json>
+        {{currentSubmission | json }}
+      </code></pre>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="currentPage === 'Form Reader'">
+  <div class="my-2 d-flex justify-content-center">
+    <small
+      class="d-inline-flex px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2"
+      >You can read previously submitted form</small
+    >
+  </div>
+  <form-renderer
+    [form]="form"
+    [submission]="submission"
+    readOnly="true"
+    (submit)="onSubmission($event)"
+  ></form-renderer>
+</ng-container>

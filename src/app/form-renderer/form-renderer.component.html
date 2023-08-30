@@ -1,1 +1,8 @@
-<p>form-renderer works!</p>
+<div class="container-fluid my-2">
+  <formio
+    [form]="form"
+    [readOnly]="readOnly"
+    [submission]="submission"
+    (submit)="onSubmit($event)"
+  ></formio>
+</div>
