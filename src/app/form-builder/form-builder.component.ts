@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { options } from './options';
 
 @Component({
-  selector: 'form-builder',
+  selector: 'dynamic-form-builder',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss'],
 })
@@ -28,7 +28,6 @@ export class FormBuilderComponent implements OnInit {
 
   onChange(event) {
     this.generatedForm = event.form;
-    console.log(this.generatedForm);
   }
 
   saveForm() {

@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
     if (submissionStr) {
       this.submission = JSON.parse(submissionStr);
     }
-    console.log(this.submission)
     this.initialForm = JSON.parse(JSON.stringify(this.form));
   }
 

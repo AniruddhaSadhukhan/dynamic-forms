@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'form-renderer',
+  selector: 'dynamic-form-renderer',
   templateUrl: './form-renderer.component.html',
   styleUrls: ['./form-renderer.component.scss'],
 })

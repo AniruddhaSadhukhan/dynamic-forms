@@ -44,10 +44,10 @@
       >Create a form here and save the form</small
     >
   </div>
-  <form-builder
+  <dynamic-form-builder
     [initialForm]="initialForm"
     (save)="onFormSave($event)"
-  ></form-builder>
+  ></dynamic-form-builder>
 
   <div class="my-2 d-flex justify-content-center">
     <small
@@ -78,7 +78,7 @@
       Submit Button in the form to submit the result.</small
     >
   </div>
-  <form-renderer [form]="form" (submit)="onSubmission($event)"></form-renderer>
+  <dynamic-form-renderer [form]="form" (submit)="onSubmission($event)"></dynamic-form-renderer>
 
   <div class="my-2 d-flex justify-content-center">
     <small
@@ -108,10 +108,10 @@
       >You can read previously submitted form</small
     >
   </div>
-  <form-renderer
+  <dynamic-form-renderer
     [form]="form"
     [submission]="submission"
     readOnly="true"
     (submit)="onSubmission($event)"
-  ></form-renderer>
+  ></dynamic-form-renderer>
 </ng-container>
