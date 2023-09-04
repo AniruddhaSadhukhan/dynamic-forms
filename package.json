@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "update": "npm update --legacy-peer-deps",
     "serve": "ng serve",
     "build": "ng build",
     "deploy": "surge --project ./dist/dynamic-forms --domain ani-dynamic-forms-demo.surge.sh",
